@@ -1,0 +1,13 @@
+<div class="w-50 mx-auto text-center my-5">
+    <h3 class="fw-bold text-main my-4">Please Enter the order details</h3>
+    <form [formGroup]="checkoutForm" (ngSubmit)="checkout(checkoutForm.value)">
+    <input type="text" placeholder="Details..." class="form-control my-3" formControlName="details">
+    <input type="tel" placeholder="phone..." class="form-control my-3" formControlName="phone">
+    <input type="text" placeholder="city..." class="form-control my-3" formControlName="city">
+    <button class="btn bg-main my-3 text-white" type="submit">
+        <span *ngIf="!isLoading && paymentOption == 'cash'">Order Now</span>
+        <span *ngIf="!isLoading && paymentOption == 'onlinePayment'">Pay Now</span>
+        <span *ngIf="isLoading"><i class="fa-solid fa-spinner fa-spin"></i></span>
+    </button>
+    </form>
+</div>

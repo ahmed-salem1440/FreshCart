@@ -1,0 +1,24 @@
+
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center position-relative top-0 min-vh-100 start-0 w-100">
+    <i id="cartLoader" class="fa-solid fa-cart-shopping fa-bounce text-main"></i>
+</div>
+
+<input placeholder="Search by product name..." [(ngModel)]="searchTerm" type="text" class="mx-auto my-5 w-75 form-control">
+<div *ngIf="!isLoading" class="row g-2">
+    <div *ngFor = "let product of products|search:searchTerm" class="col-sm-6 col-md-4 px-2 col-lg-3">
+        <div class="bg-white">
+            <div class="product  px-2 py-4">
+            <a [routerLink]="['/productdetails',product._id]">
+                    <img src={{product.imageCover}} class="w-100" alt="">
+                    <span class="text-main fw-bold font-sm" >{{product.category.name}}</span>
+                    <h3 class="h6 fw-bold my-3">{{product.title.split(' ').slice(0,2).join(' ')}}</h3>
+                    <div class="d-flex justify-content-between">
+                        <span class="text-muted font-sm">{{product.price}} EGP</span>
+                        <span class="text-muted font-sm"><i class="fas fa-star rating-color"></i>{{product.ratingsAverage}}</span>
+                    </div>
+                </a>
+                <button [id]="product._id" (click)="addToCart(product._id,product.title.split(' ').slice(0,2).join(' '))" class="btn bg-main mt-1 text-white w-100"> + Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>

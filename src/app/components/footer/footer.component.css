@@ -1,0 +1,14 @@
+.hLine{
+    width: 100%;
+    background-color: rgba(128, 128, 128, 0.266);
+    height: 1px;
+}
+.logo-width{
+    width: 60px;
+    margin: 0px 10px;
+}
+.download-logo-width{
+    width: 100px;
+    margin-left: 10px;
+    cursor: pointer;
+}

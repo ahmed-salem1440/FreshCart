@@ -1,0 +1,17 @@
+i{
+    cursor: pointer;
+}
+
+#products-number{
+    top: -10%;
+    right: -50%;
+    font-weight: bolder;
+    font-size: small;
+}
+.ActiveLink{
+    font-weight: bolder;
+    color: var(--main-color);
+}
+.dropdown-toggle{
+    color: var(--main-color) !important;
+}

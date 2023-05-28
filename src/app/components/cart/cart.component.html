@@ -1,0 +1,61 @@
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center position-relative top-0 min-vh-100  start-0 w-100">
+    <i id="cartLoader" class="fa-solid fa-cart-shopping fa-bounce text-main"></i>
+</div>
+<div *ngIf="!isLoading && cartEmprty" class="w-100 emptyCart text-center d-flex justify-content-center align-items-center">
+    <div>
+        <h3 class=" text-main fw-bolder mb-3">{{cartEmprty}} <i class="fa-regular fa-face-frown"></i> <i class="ms-3 fa-solid fa-heart-crack"></i></h3>
+        <a routerLink="/home" id="shopNow" class="mx-auto text-main fw-bold">Shop Now</a>
+    </div>
+</div>
+<div id="cart" *ngIf="!isLoading && !cartEmprty" class="bg-main-light p-4 my-4">
+    <div class="d-flex my-3 justify-content-between">
+        <h3>Shopping Cart</h3>
+        <button (click)="emptyTheCart()" id="emptyTheCart" class="btn btn-outline-danger fw-bolder"><i class="fa-regular fa-trash-can "></i> Empty the Cart </button>
+    </div>
+    <h6 class="text-main">Total Price : {{cartDetails?.totalCartPrice}} EGP</h6>
+    <div *ngFor="let product of cartDetails?.products" class="row align-items-center border-bottom py-3">
+            <div class="col-md-1">
+                <img [src]="product.product.imageCover" class="w-100" alt="">
+            </div>
+            <div class="col-md-11 d-flex justify-content-between">
+                <div>
+                    <h6 >{{product.product.title.slice(0,60)}} <span *ngIf="product.product.title.length > 60">...</span></h6>
+                    <h6 class="text-main">Price: {{product.price}}</h6>
+                    <button [id]="product.product._id" (click)="removeItem(product.product._id,product.product.title)" class="btn text-danger"> <i class="fa-regular fa-trash-can "></i> Remove </button>
+                </div>
+                <div>
+                    <i (click)="updateItemCount(product.product._id,product.count+1);product.count = product.count+1" class="text-main cursor-pointer fa-solid fa-square-plus"></i>
+                    <span class="mx-2 fw-semibold">{{product.count}}</span>
+                    <i (click)="updateItemCount(product.product._id,product.count-1);product.count = product.count-1" class="text-main cursor-pointer fa-solid fa-square-minus"></i>
+                </div>
+            </div>
+
+    </div>
+
+    <div class="payment-optins my-3">
+        <div class="Container">
+            <form>
+                <label>
+                    <input (click)="paymenyOption('cash')" type="radio" name="radio" checked="">
+                    <span>Cash On Delivery</span>
+                </label>
+                <label>
+                    <input (click)="paymenyOption('online')" type="radio" name="radio">
+                    <span>Online Payment</span>
+                </label>
+            </form>
+        </div>
+    </div>
+    <button class=" btn my-3 bg-main ">
+        <a *ngIf="paymentMethod =='cash'" class="text-white fw-bold" (click)="routerWithCartId('cash')">
+            Order Now
+        </a>
+        <a *ngIf="paymentMethod =='online'" class="text-white fw-bold" (click)="routerWithCartId('onlinePayment')">
+            Online Payment <span>
+                <i class="mx-2 fa-brands fa-cc-visa"></i>
+                <i class="ms-2 fa-brands fa-cc-mastercard"></i>
+            </span> 
+        </a>
+
+    </button>
+</div>

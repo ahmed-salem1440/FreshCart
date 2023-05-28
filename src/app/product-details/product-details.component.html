@@ -1,0 +1,40 @@
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center position-relative top-0 min-vh-100 start-0 w-100">
+    <i id="cartLoader" class="fa-solid fa-cart-shopping fa-bounce text-main"></i>
+</div>
+<div *ngIf="!isLoading"  class="row align-items-center py-4">
+    <div class="col-md-4">
+        <owl-carousel-o [options]="customOptions">
+            <ng-container *ngFor="let img of productDetails?.images">
+              <ng-template carouselSlide >
+                  <div #imageContainer (click)="modalSrc($event)" data-bs-toggle="modal" data-bs-target="#exampleModal" class="imageContainer">
+                    <img #productImage (mouseleave)="hidezooming()" (mousemove)="zooming($event)" [src]="img" class="w-100" alt="">
+                </div>
+            </ng-template>
+        </ng-container>
+    </owl-carousel-o>
+    <p class="text-main text-center mt-2" #imageCaption>Roll over image to zoom in</p>
+</div>
+<div #overlay class="overlay"></div>
+<div class="col-md-8 mt-sm-4">
+    <h2 class="h4 fw-bolder mb-2">{{productDetails?.title}}</h2>
+    <p class="text-muted py-3">{{productDetails?.description}}</p>
+    <span class="d-block my-3 text-muted font-sm">{{productDetails?.price}} EGP</span>
+    <span *ngFor="let i of solidStars"><i class="text-success fa-solid fa-star"></i></span>
+    <span *ngIf="halfStar"><i class="text-success fa-solid fa-star-half-stroke"></i></span>
+    <span *ngFor="let i of emptyStar"><i class="text-success fa-regular fa-star"></i></span>
+    <span class="text-muted font-sm">{{productDetails?.ratingsAverage}} ({{productDetails.ratingsQuantity}} rates)</span>
+    <button [id]="productDetails._id" (click)="addToCart(productDetails._id,productDetails?.title)" class="btn bg-main mt-2 text-white w-100">+ Add to Cart</button>
+</div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg  modal-dialog-centered">
+    <div class="modal-content">
+      <img [src]="imgSrc" alt="">
+    </div>
+  </div>
+</div>

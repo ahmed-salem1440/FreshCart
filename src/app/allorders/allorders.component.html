@@ -1,0 +1,33 @@
+<div
+  *ngIf="isLoading"
+  class="d-flex justify-content-center align-items-center position-relative top-0 min-vh-100 start-0 w-100"
+>
+  <i id="cartLoader" class="fa-solid fa-cart-shopping fa-bounce text-main"></i>
+</div>
+<div *ngIf="!isLoading" class="p-4  my-4">
+  <h3 class="text-main text-center fw-bolder">Your Orders</h3>
+
+  <div
+    *ngFor="let order of allOrders; let i = index"
+    class=" mb-5"
+  >
+    <h4>Order #{{ i + 1 }}</h4>
+    <h4 class="text-main">Order total price: {{ order.totalOrderPrice}}</h4>
+    <div class="bg-main-light my-2 border border-1 px-3 py-3">
+        <div *ngIf="allOrders" class="my-2">
+          <div *ngFor="let item of order.cartItems; let j = index" class="row d-flex align-items-center">
+            <div class="col-md-2 h-75">
+              <img [src]="item.product.imageCover" class="w-100" alt="" />
+            </div>
+            <div class="col-md-10 mb-2">
+              <p class="text-main">title: {{ item.product.title }}</p>
+              <p class="text-main">Count: {{ item.count }}</p>
+              <p class="text-main">price: {{ item.price }}</p>
+            </div>
+            <div *ngIf="j < order.cartItems.length -1" class="hLine my-3"></div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+

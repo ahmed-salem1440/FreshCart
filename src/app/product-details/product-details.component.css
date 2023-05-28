@@ -1,0 +1,19 @@
+#cartLoader{
+    font-size: 100px;
+}
+
+.overlay{
+    display: none;
+    width: 25%;
+    height: 25%;
+    background-repeat: no-repeat;
+    top: 25%;
+    left: 35%;
+    transform: translate(0,-50%);
+    position: absolute;
+    z-index: 2;
+}
+.imageContainer{
+    cursor: zoom-in;
+}
+
