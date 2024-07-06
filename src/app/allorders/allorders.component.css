@@ -1,0 +1,9 @@
+#cartLoader{
+    font-size: 148px;
+  }
+.hLine{
+    width: 90%;
+    height: 1px;
+    margin: auto;
+    background-color: #05900583;
+}

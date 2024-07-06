@@ -1,0 +1,58 @@
+<div class="containet">
+    <div  *ngIf="action == 'change-password'" class="m-auto">
+        <form (ngSubmit)="handleChangePassword(changePassword)" [formGroup]="changePassword" class="text-center">
+            <h4 class="text-main fw-bold my-3">Change Password Form:</h4>
+            <input type="password" formControlName="currentPassword" placeholder="Current password" class="form-control my-3 w-50 m-auto">
+            <div *ngIf="changePassword.get('currentPassword')?.errors && changePassword.get('currentPassword')?.touched" class="alert text-white w-50 m-auto p-2 bg-danger">
+                <p *ngIf="changePassword.get('currentPassword')?.getError('pattern')" class="m-0">password must start with a capital letter and minimum 5 characters</p>
+                <p *ngIf="changePassword.get('currentPassword')?.getError('required')" class="m-0">currentPassword is required</p>
+            </div>
+            <input type="password" formControlName="password" placeholder="New password" class="form-control my-3 w-50 m-auto">
+            <div *ngIf="changePassword.get('password')?.errors && changePassword.get('password')?.touched" class="alert text-white w-50 m-auto p-2 bg-danger">
+                <p *ngIf="changePassword.get('password')?.getError('pattern')" class="m-0">password must start with a capital letter and minimum 5 characters</p>
+                <p *ngIf="changePassword.get('password')?.getError('required')" class="m-0">password is required</p>
+            </div>
+            <input type="password" formControlName="rePassword" placeholder="Re-type the new password" class="form-control my-3 w-50 m-auto">
+            <div *ngIf="changePassword.get('rePassword')?.errors && changePassword.get('rePassword')?.touched" class="alert text-white w-50 m-auto p-2 bg-danger">
+                <p *ngIf="changePassword.get('rePassword')?.getError('pattern')" class="m-0">rePassword must start with a capital letter and minimum 5 characters</p>
+                <p *ngIf="changePassword.get('rePassword')?.getError('raPasswordMatching')" class="m-0">Password and re rePassword does not the same</p>
+                <p *ngIf="changePassword.get('rePassword')?.getError('required')" class="m-0">rePassword is required</p>
+            </div>
+            <button [disabled]="changePassword.invalid" class=" btn bg-main text-white" type="submit">
+                <span *ngIf="!isLoading">Submit</span>
+                <span *ngIf="isLoading"><i class="fa-solid fa-spinner fa-spin"></i></span> 
+            </button>
+            <div id="changeMessage" class="alert text-white p-0 w-50 my-3 m-auto d-flex align-items-center justify-content-center">
+
+            </div>
+        </form>
+    </div>
+    <div  *ngIf="action == 'change-data'" class="m-auto">
+        <form (ngSubmit)="handleChangeData(changeData)" [formGroup]="changeData" class="text-center">
+            <h4 class="text-main fw-bold my-3">Change Information Form:</h4>
+            <input type="text" formControlName="name" placeholder="name" class="form-control my-3 w-50 m-auto">
+            <div *ngIf="changeData.get('name')?.errors && changeData.get('name')?.touched" class="alert p-2 bg-danger w-50 m-auto">
+                <p *ngIf="changeData.get('name')?.getError('minlength')" class="m-0">name Minimum Length is 3</p>
+                <p *ngIf="changeData.get('name')?.getError('maxlength')" class="m-0">name maximum Length is 10</p>
+                <p *ngIf="changeData.get('name')?.getError('required')" class="m-0">name is required</p>
+            </div>
+            <input type="email" formControlName="email" placeholder="New email" class="form-control my-3 w-50 m-auto">
+            <div *ngIf="changeData.get('email')?.errors && changeData.get('email')?.touched" class="alert p-2 bg-danger w-50 m-auto">
+                <p *ngIf="changeData.get('email')?.getError('email')" class="m-0">Invalid Email</p>
+                <p *ngIf="changeData.get('email')?.getError('required')" class="m-0">email is required</p>
+            </div>
+            <input type="tel" formControlName="phone" placeholder="Phone" class="form-control my-3 w-50 m-auto">
+            <div *ngIf="changeData.get('phone')?.errors && changeData.get('phone')?.touched" class="alert p-2 bg-danger w-50 m-auto">
+                <p *ngIf="changeData.get('phone')?.getError('pattern')" class="m-0">phone must be an Egyption mobile number</p>
+                <p *ngIf="changeData.get('phone')?.getError('required')" class="m-0">phone is required</p>
+            </div>
+            <button [disabled]="changeData.invalid" class=" btn bg-main text-white" type="submit">
+                <span *ngIf="!isLoading">Submit</span>
+                <span *ngIf="isLoading"><i class="fa-solid fa-spinner fa-spin"></i></span> 
+            </button>
+            <div id="changeMessage" class="alert text-white p-0 w-50 my-3 m-auto d-flex align-items-center justify-content-center">
+
+            </div>
+        </form>
+    </div>
+</div>

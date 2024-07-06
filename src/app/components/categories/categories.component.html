@@ -1,0 +1,17 @@
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center position-relative top-0 custom-size start-0 w-100">
+  <i class="fa-solid fa-spinner fa-spin text-main fa-5x"></i>
+</div>
+<owl-carousel-o [options]="customOptions">
+
+    <ng-container class="mx-2 " *ngFor="let category of categories">
+      <ng-template carouselSlide >
+        <div class="mx-1">
+          <img class="w-100" [src]="category.image" >
+          <h4 class="h6 my-2 text-center fw-bolder">{{category.name}}</h4>
+        </div>
+      </ng-template>
+    </ng-container>
+
+</owl-carousel-o>
+
+
